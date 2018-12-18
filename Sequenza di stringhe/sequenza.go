@@ -1,30 +1,39 @@
 package list
 
+//List is what this package is about
 type List *Node
+
+//Node is an element of List
 type Node struct {
 	content string
 	next    *Node
 }
 
-func Length(l List) int {
+//Lenght return the lenghts of the list
+func Lenght(l List) int {
 	curs := l
 	c := 0
 	for curs != nil {
 		c++
 		curs = curs.next
 	}
+	return c
 }
-func AddFront(l List, x string) list {
+
+//AddFront adds a new item in front of the list
+func AddFront(l List, x string) List {
 	n := new(Node)
 	n.content = x
 	n.next = l
 	return n
 }
-func AddInOrder(l List, x string) list {
+
+//AddInOrder adds a new item to the list keeping alfabetic order
+func AddInOrder(l List, x string) List {
 	n := new(Node)
 	n.content = x
 	curs := l
-	prev := nil
+	var prev List
 	for curs != nil && curs.content < x {
 		prev = curs
 		curs = curs.next
@@ -33,12 +42,14 @@ func AddInOrder(l List, x string) list {
 	prev.next = n
 	if prev == nil {
 		return n
-	} else {
-		prev.next = n
-		return l
 	}
+	prev.next = n
+	return l
+
 }
-func Concatenate(first, second list) list {
+
+//Concatenate creates a new list made up of the 2 lists one afther the other
+func Concatenate(first, second List) List {
 	if first == nil { //Senza questo if rischiamo un panic in curs.next
 		return second
 	}
@@ -49,6 +60,7 @@ func Concatenate(first, second list) list {
 	curs.next = second
 	return first
 }
-func String(l List) string {
 
-}
+// func String(l List) string {
+//
+// }
