@@ -60,7 +60,3 @@ func Concatenate(first, second List) List {
 	curs.next = second
 	return first
 }
-
-// func String(l List) string {
-//
-// }
